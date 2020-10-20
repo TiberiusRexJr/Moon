@@ -5,5 +5,53 @@
 
 
 <div class="container">
-
+    <br />
+    <br />
+    <a class="btn btn-success" onclick="addRecord()">Add</a>
+    <table id="example" class="table table-striped table-bordered" style="width:100%" >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+    </table>
 </div>
+@section scripts{
+    <script>
+
+
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "ajax": {
+                "url":"@Url.Action("getData","Home",FormMethod.Get)",
+                "type": "GET",
+                "datatype":"JSON"
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "Name" },
+                { "data": "Email" },
+                {"data": "Pin"}
+
+
+            ],
+            "languages": {
+                "Processing": "loading",
+                "emptytable":"no data found"
+            }
+        })
+    } );
+    </script>
+
+    <script>
+        function addRecord()
+        {
+            alert("hello from record");
+        }
+    </script>
+}
